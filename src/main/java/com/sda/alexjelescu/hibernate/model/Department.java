@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "departments") // mandatory - singular vs plural
 
 public class Department {
-    @Id
+    @Id  //primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") // optional - identical names
     private Integer id;
@@ -27,5 +27,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
