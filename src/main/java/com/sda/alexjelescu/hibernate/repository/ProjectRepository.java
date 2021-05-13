@@ -16,11 +16,9 @@ public class ProjectRepository {
         return project;
     }
 
-    public void save(String projectName) {
+    public void save(Project project) {
         Session session = SessionManager.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Project project = new Project();
-        project.setName(projectName);
         //The save method persists the object to the database
         session.save(project);
         transaction.commit();

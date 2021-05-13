@@ -1,6 +1,8 @@
 package com.sda.alexjelescu.hibernate.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -21,10 +23,21 @@ public class Employee {
     private String email;
     @Column(name = "salary")
     private Integer salary;
-    @Column(name = "departmentId")
-    private Integer departmentId;
-    @Column(name = "managerId")
-    private Integer managerId;
+
+
+    @OneToOne
+    @JoinColumn(name = "account_id") // account_id este in baza de date
+    private Account account;
+
+    @ManyToOne
+    @JoinColumn(name = "departmentId")
+    private Department department;
+
+    @ManyToMany
+    @JoinTable(name = "employees_projects",
+            joinColumns = {@JoinColumn(name = "employeeId")},
+            inverseJoinColumns = {@JoinColumn(name = "projectId")})
+    private Set<Project> projects = new HashSet<>();
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -82,20 +95,29 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+
+    public Account getAccount() {
+        return account;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
-    public Integer getManagerId() {
-        return managerId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setManagerId(Integer managerId) {
-        this.managerId = managerId;
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override
@@ -108,8 +130,7 @@ public class Employee {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", salary=" + salary +
-                ", departmentId=" + departmentId +
-                ", managerId=" + managerId +
+                ", account=" + account +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.sda.alexjelescu.hibernate.repository;
 
+import com.sda.alexjelescu.hibernate.model.Account;
 import com.sda.alexjelescu.hibernate.model.Department;
 import com.sda.alexjelescu.hibernate.model.Employee;
 import com.sda.alexjelescu.hibernate.utils.SessionManager;
@@ -15,10 +16,12 @@ public class EmployeeRepository {
         return employee;
     }
 
-    public void save(Employee employee) {
+    public void save(Employee employee, Account account) {
         Session session = SessionManager.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(employee);
+        session.save(account);  //am adaugat un account in tabel si se genereaza in id pt account
+        employee.setAccount(account); // setam accountul la employee
+        session.save(employee); // adaugam employee in baza de date
         transaction.commit();
         session.close();
     }

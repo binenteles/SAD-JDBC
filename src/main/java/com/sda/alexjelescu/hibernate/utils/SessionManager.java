@@ -1,5 +1,6 @@
 package com.sda.alexjelescu.hibernate.utils;
 
+import com.sda.alexjelescu.hibernate.model.Account;
 import com.sda.alexjelescu.hibernate.model.Department;
 import com.sda.alexjelescu.hibernate.model.Employee;
 import com.sda.alexjelescu.hibernate.model.Project;
@@ -28,6 +29,7 @@ public class SessionManager extends AbstractSessionManager {
         configuration.addAnnotatedClass(Department.class);
         configuration.addAnnotatedClass(Employee.class);
         configuration.addAnnotatedClass(Project.class);
+        configuration.addAnnotatedClass(Account.class);
 
     }
 

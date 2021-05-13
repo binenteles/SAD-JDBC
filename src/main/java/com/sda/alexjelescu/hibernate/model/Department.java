@@ -1,9 +1,12 @@
 package com.sda.alexjelescu.hibernate.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "departments") // mandatory - singular vs plural
+
 
 public class Department {
     @Id  //primary key
@@ -12,6 +15,9 @@ public class Department {
     private Integer id;
     @Column(name = "name") // optional - identical names
     private String name;
+
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
     public Integer getId() {
         return id;
@@ -29,11 +35,20 @@ public class Department {
         this.name = name;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+
                 '}';
     }
 }
