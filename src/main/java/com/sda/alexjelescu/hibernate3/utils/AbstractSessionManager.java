@@ -1,4 +1,4 @@
-package com.sda.alexjelescu.hibernate.utils;
+package com.sda.alexjelescu.hibernate3.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

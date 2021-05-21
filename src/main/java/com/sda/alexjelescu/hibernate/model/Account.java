@@ -10,7 +10,7 @@ import java.sql.Date;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id")
+    @Column(name = "id")
     private Integer id;
     @Column(name = "creationDate")
     private Date creationDate;
